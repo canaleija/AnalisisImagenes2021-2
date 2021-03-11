@@ -5,6 +5,7 @@
  */
 package analisisimagenes2021.pkg2;
 
+import espacial.Histograma;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -22,12 +23,10 @@ public class AnalisisImagenes20212 {
        // visualización de la imagen dentro de la GUI
         Image imagen = herramientas.HerramientasImagen.abrirImagen();
         // para cuantización de la imagen vamos a un ocupar BufferedImage
-        BufferedImage bImagen = herramientas.HerramientasImagen.toBufferedImage(imagen);
+        //BufferedImage bImagen = herramientas.HerramientasImagen.toBufferedImage(imagen);
+        Histograma h = new Histograma(imagen);
+        h.calcularHistogramas();
         
-        Color color = new Color(bImagen.getRGB(300,240));
-        int r = color.getRed();
-        int g =color.getGreen();
-        int b = color.getBlue();
         System.out.println();
     }
     
