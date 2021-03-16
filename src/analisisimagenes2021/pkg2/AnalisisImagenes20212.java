@@ -6,6 +6,7 @@
 package analisisimagenes2021.pkg2;
 
 import espacial.Histograma;
+import herramientas.Grafica;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -26,6 +27,12 @@ public class AnalisisImagenes20212 {
         //BufferedImage bImagen = herramientas.HerramientasImagen.toBufferedImage(imagen);
         Histograma h = new Histograma(imagen);
         h.calcularHistogramas();
+        Grafica g = new Grafica("Tono","Frecuencia","Histograma de Frecuencias");
+        g.agregarSerie("Rojo", h.getR());
+        g.agregarSerie("Azul", h.getB());
+        g.agregarSerie("Verde", h.getG());
+        g.crearGrafica();
+        g.muestraGrafica();
         
         System.out.println();
     }
