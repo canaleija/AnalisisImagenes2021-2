@@ -26,6 +26,16 @@
                 <Property name="text" type="java.lang.String" value="Modificar Pixeles"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemGrises">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Escala de Grises"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItemBin">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Binarizacion"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
       </SubComponents>

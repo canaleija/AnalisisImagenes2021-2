@@ -19,6 +19,7 @@ import org.jfree.chart.ChartColor;
 public class JInternalFrameBinario extends javax.swing.JInternalFrame {
 
     private JInternalFrameImagen internal;
+    private Image imagenOriginal;
     /**
      * Creates new form JInternalFrameBinario
      */
@@ -26,16 +27,23 @@ public class JInternalFrameBinario extends javax.swing.JInternalFrame {
         
         this.internal = internal;
         initComponents();
-        int u = this.jSlider1.getValue();
+       
+        this.imagenOriginal = herramientas.HerramientasImagen.copiarImagen(internal.getImagenOriginal());
         this.jButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               BufferedImage bi = herramientas.HerramientasImagen.toBufferedImage(internal.getImagenOriginal());
+               int u = jSlider1.getValue();
+               BufferedImage bi = herramientas.HerramientasImagen.toBufferedImage(imagenOriginal);
                 Color color;
                 for(int j = 0 ; j< bi.getWidth();j++){
                     for(int m = 0 ; m < bi.getHeight();m++){
                         color = new Color(bi.getRGB(j, m));
-                        //¿ que tenemos que hacer para reducir de 24 a 2? en base a u
+                        double v = (color.getRed()+color.getGreen()+color.getBlue())/3;
+                        if(v>=u){
+                            bi.setRGB(j, m,Color.BLACK.getRGB());
+                        }else{
+                            bi.setRGB(j, m,Color.WHITE.getRGB());
+                        }
                     }
                 }
                 Image nueva = herramientas.HerramientasImagen.toImage(bi);
@@ -58,7 +66,10 @@ public class JInternalFrameBinario extends javax.swing.JInternalFrame {
 
         setTitle("Imagen Binarizada");
 
+        jSlider1.setMajorTickSpacing(10);
         jSlider1.setMaximum(255);
+        jSlider1.setPaintLabels(true);
+        jSlider1.setPaintTicks(true);
         jSlider1.setValue(15);
 
         jButton1.setText("Convertir");
@@ -75,10 +86,11 @@ public class JInternalFrameBinario extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(0, 17, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();

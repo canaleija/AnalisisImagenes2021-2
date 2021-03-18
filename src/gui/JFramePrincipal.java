@@ -6,7 +6,7 @@
 package gui;
 
 import listeners.InternalFrameListener;
-import listeners.ModificarImagenListener;
+import listeners.MenuItemsImagenListener;
 
 /**
  *
@@ -20,7 +20,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
     public JFramePrincipal() {
         initComponents();
         this.jMenuItem1.addActionListener(new InternalFrameListener(this));
-        this.jMenuItem2.addActionListener(new ModificarImagenListener(this));
+        MenuItemsImagenListener lis = new MenuItemsImagenListener(this);
+        this.jMenuItem2.addActionListener(lis);
+        this.jMenuItemGrises.addActionListener(lis);
+        this.jMenuItemBin.addActionListener(lis);
+        
     }
 
     /**
@@ -38,6 +42,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItemGrises = new javax.swing.JMenuItem();
+        jMenuItemBin = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +69,12 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jMenuItem2.setText("Modificar Pixeles");
         jMenu2.add(jMenuItem2);
+
+        jMenuItemGrises.setText("Escala de Grises");
+        jMenu2.add(jMenuItemGrises);
+
+        jMenuItemBin.setText("Binarizacion");
+        jMenu2.add(jMenuItemBin);
 
         jMenuBar1.add(jMenu2);
 
@@ -125,6 +137,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItemBin;
+    private javax.swing.JMenuItem jMenuItemGrises;
     // End of variables declaration//GEN-END:variables
 
     /**

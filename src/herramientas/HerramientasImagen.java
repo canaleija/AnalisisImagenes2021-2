@@ -63,9 +63,9 @@ public class HerramientasImagen {
     
     public static BufferedImage toBufferedImage (Image imagen){
          // imagen es un objeto de tipo BufferedImage
-        if (imagen instanceof BufferedImage){
-          return (BufferedImage)imagen;
-        }
+//        if (imagen instanceof BufferedImage){
+//          return (BufferedImage)imagen;
+//        }
         BufferedImage bi = 
                 new BufferedImage(imagen.getWidth(null), imagen.getHeight(null), BufferedImage.TYPE_INT_RGB);
         
@@ -75,5 +75,8 @@ public class HerramientasImagen {
         
         return bi;
     }
-    
+    public static Image copiarImagen(Image i){
+        BufferedImage bi = toBufferedImage(i);
+        return bi.getScaledInstance(bi.getWidth(),bi.getHeight(), BufferedImage.TYPE_INT_RGB);
+    }
 }
