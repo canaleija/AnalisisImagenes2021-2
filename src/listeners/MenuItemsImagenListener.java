@@ -5,10 +5,12 @@
  */
 package listeners;
 
+import espacial.Histograma;
 import gui.JFramePrincipal;
 import gui.JInternalFrameBinario;
 import gui.JInternalFrameImagen;
 import gui.JInternalFrameModificar;
+import herramientas.Grafica;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -59,6 +61,36 @@ public class MenuItemsImagenListener implements ActionListener{
             internalNuevo.setVisible(true);
             this.framePrincipal.getjDesktopPanePrincipal().add(internalNuevo);
         }
+        
+        // Histograma
+        if (item.getText().equals("Histograma")){
+           
+            JInternalFrameImagen internal = (JInternalFrameImagen) this.framePrincipal.getjDesktopPanePrincipal().getSelectedFrame();
+            // se puede extraer la imagen orginal         
+            Image imagen = internal.getImagenOriginal();
+            //Grafica grafica = new Grafica("Tono", "Frecuencia","Histograma");
+            Histograma his = new Histograma(imagen);
+            his.calcularHistogramas();
+            his.graficar();
+
+        }
+        
+        // Iluminacion
+        if (item.getText().equals("Iluminacion")){
+           
+            JInternalFrameImagen internal = (JInternalFrameImagen) this.framePrincipal.getjDesktopPanePrincipal().getSelectedFrame();
+            // se puede extraer la imagen orginal         
+            Image imagen = internal.getImagenOriginal();
+           
+            Image nueva = espacial.EspacialUno.modificarIluminacion(imagen, -25);
+            
+            JInternalFrameImagen i = new JInternalFrameImagen(nueva);
+            i.setVisible(true);
+            this.framePrincipal.getjDesktopPanePrincipal().add(i);
+
+        }
+        
+        
     }
     
 }

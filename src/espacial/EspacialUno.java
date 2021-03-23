@@ -56,5 +56,31 @@ public class EspacialUno {
      return herramientas.HerramientasImagen.toImage(bi);
     }
     
+    public static Image modificarIluminacion (Image imagenOriginal, int valor){
+            
+        BufferedImage bi = herramientas.HerramientasImagen.toBufferedImage(imagenOriginal);
+        Color color ;
+                int i,j,aux;
+                for(j = 0; j< bi.getHeight(); j++){
+                    for(i = 0; i < bi.getWidth(); i++){
+                     color = new Color(bi.getRGB(i,j));
+                     int r = color.getRed()+valor;
+                     int g = color.getGreen()+valor;
+                     int b = color.getBlue()+valor;
+                     
+                     color = new Color(verificar(r),verificar(g),verificar(b));
+                     bi.setRGB(i, j, color.getRGB());
+                    }
+                }
+     return herramientas.HerramientasImagen.toImage(bi);
+    }
+    
+    public static int verificar(int valor){
+        if(valor>255) return 255;
+        if(valor<0) return 0;
+        return valor;
+    }
+    
+    
     
 }

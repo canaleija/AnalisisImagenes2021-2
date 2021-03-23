@@ -24,6 +24,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
         this.jMenuItem2.addActionListener(lis);
         this.jMenuItemGrises.addActionListener(lis);
         this.jMenuItemBin.addActionListener(lis);
+        this.jMenuItemHistograma.addActionListener(lis);
+        this.jMenuItemIluminacion.addActionListener(lis);
         
     }
 
@@ -40,10 +42,12 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuEspacial = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItemGrises = new javax.swing.JMenuItem();
         jMenuItemBin = new javax.swing.JMenuItem();
+        jMenuItemHistograma = new javax.swing.JMenuItem();
+        jMenuItemIluminacion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,18 +69,24 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Espacial");
+        jMenuEspacial.setText("Espacial");
 
         jMenuItem2.setText("Modificar Pixeles");
-        jMenu2.add(jMenuItem2);
+        jMenuEspacial.add(jMenuItem2);
 
         jMenuItemGrises.setText("Escala de Grises");
-        jMenu2.add(jMenuItemGrises);
+        jMenuEspacial.add(jMenuItemGrises);
 
         jMenuItemBin.setText("Binarizacion");
-        jMenu2.add(jMenuItemBin);
+        jMenuEspacial.add(jMenuItemBin);
 
-        jMenuBar1.add(jMenu2);
+        jMenuItemHistograma.setText("Histograma");
+        jMenuEspacial.add(jMenuItemHistograma);
+
+        jMenuItemIluminacion.setText("Iluminacion");
+        jMenuEspacial.add(jMenuItemIluminacion);
+
+        jMenuBar1.add(jMenuEspacial);
 
         setJMenuBar(jMenuBar1);
 
@@ -133,12 +143,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPanePrincipal;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenuEspacial;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemBin;
     private javax.swing.JMenuItem jMenuItemGrises;
+    private javax.swing.JMenuItem jMenuItemHistograma;
+    private javax.swing.JMenuItem jMenuItemIluminacion;
     // End of variables declaration//GEN-END:variables
 
     /**

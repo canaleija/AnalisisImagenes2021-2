@@ -5,6 +5,7 @@
  */
 package espacial;
 
+import herramientas.Grafica;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -47,7 +48,12 @@ public class Histograma {
        
     
     public void graficar (){
-    
+        Grafica grafica =  new Grafica("Tono","Frecuencia","Histograma");
+        grafica.agregarSerie("Rojo", this.r);
+        grafica.agregarSerie("Azul", this.b);
+        grafica.agregarSerie("Verde", this.g);
+        grafica.crearGrafica();
+        grafica.muestraGrafica();
     }
 
     /**
