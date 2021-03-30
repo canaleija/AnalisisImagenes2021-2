@@ -5,7 +5,9 @@
  */
 package analisisimagenes2021.pkg2;
 
+import espacial.EspacialUno;
 import espacial.Histograma;
+import espacial.UmbralAutomatico;
 import herramientas.Grafica;
 import java.awt.Color;
 import java.awt.Image;
@@ -25,7 +27,8 @@ public class AnalisisImagenes20212 {
         Image imagen = herramientas.HerramientasImagen.abrirImagen();
         // para cuantización de la imagen vamos a un ocupar BufferedImage
         //BufferedImage bImagen = herramientas.HerramientasImagen.toBufferedImage(imagen);
-        Histograma h = new Histograma(imagen);
+        Image grises = EspacialUno.convertirAGrises(imagen);
+        Histograma h = new Histograma(grises);
         h.calcularHistogramas();
         Grafica g = new Grafica("Tono","Frecuencia","Histograma de Frecuencias");
         g.agregarSerie("Rojo", h.getR());
@@ -34,7 +37,12 @@ public class AnalisisImagenes20212 {
         g.crearGrafica();
         g.muestraGrafica();
         
-        System.out.println();
+        int ua = UmbralAutomatico.metodoIterativo(h.getR());
+        int uao = UmbralAutomatico.otsu(h.getR());
+        
+        
+        System.out.println("Umbral Final: "+ua);
+        System.out.println("Umbral Final Otsu: "+uao);
     }
     
 }
