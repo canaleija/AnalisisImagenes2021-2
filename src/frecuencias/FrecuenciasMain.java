@@ -23,16 +23,36 @@ public class FrecuenciasMain {
     public static void main(String[] args) {
         Image imagen = herramientas.HerramientasImagen.abrirImagen();
         Image grises = EspacialUno.convertirAGrises(imagen);
+        
         FFTJFrame frame = new FFTJFrame(grises);
+        frame.setTitle("Imagen Original");
         frame.setVisible(true);
+        
         BufferedImage bImage = HerramientasImagen.toBufferedImage(grises);
+       
         Gestor gestor = new Gestor();
+        
         NumeroComplejo[][] imagenOriginal = gestor.obtenerDatosPorCanal(bImage, HerramientasColor.CanalColor.ROJO);
+        
         BufferedImage biRes = gestor.obtenerImagenFrecuencias(imagenOriginal, bImage.getWidth(),
                  bImage.getHeight(), true);
+        
         Image iRes = herramientas.HerramientasImagen.toImage(biRes);
         FFTJFrame frame2 = new FFTJFrame(iRes);
         frame2.setVisible(true);
+        frame2.setTitle("Espectro");
+        
+        // imagenOriginal se le aplica el filtro
+      
+        
+        // despues con imagenOriginal se calcula la fft Inversa
+        BufferedImage res = gestor.obtenerImagenEspacial();
+        Image iRes2 = herramientas.HerramientasImagen.toImage(res);
+        FFTJFrame frame3 = new FFTJFrame(iRes2);
+        frame3.setTitle("Inversa");
+        frame3.setVisible(true);
+        
+        
         
     }
     

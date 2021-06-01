@@ -14,6 +14,7 @@ import java.awt.image.BufferedImage;
  */
 public class Gestor {
 
+     NumeroComplejo[][] transformada;
     
     public Gestor() {
     
@@ -42,7 +43,7 @@ public NumeroComplejo[][] obtenerDatosPorCanal(BufferedImage imagenOriginal, Can
         FFTCalculo fft = new FFTCalculo();
         // construir el mapeo de representacion en frecuencias utilizando FFT
      
-        NumeroComplejo[][] transformada = fft.calculateFT(datosIO, false);
+        this.transformada = fft.calculateFT(datosIO, false);
        
             // crear la imagen del espectro 
             for (int y = 0; y < aux.getHeight(); y++) {
@@ -61,6 +62,34 @@ public NumeroComplejo[][] obtenerDatosPorCanal(BufferedImage imagenOriginal, Can
             }
         
         return aux;
+    }
+    
+     public BufferedImage obtenerImagenEspacial() {
+        /// obtenemos las dimensiones
+        int anchoImagen = this.transformada.length;
+        int altoImagen = this.transformada.length;
+        BufferedImage aux = new BufferedImage(anchoImagen, altoImagen, BufferedImage.TYPE_INT_ARGB);
+
+        FFTCalculo fft = new FFTCalculo();
+        // construir el mapeo de representacion en frecuencias utilizando FFT
+
+            NumeroComplejo[][] transformadaInv = fft.calculateFT(this.transformada, true);
+           
+            // crear la imagen del espectro 
+            for (int y = 0; y < aux.getHeight(); y++) {
+                for (int x = 0; x < aux.getWidth(); x++) {
+
+                    int color = (int) Math.abs(transformadaInv[x][y].getParteReal());
+                    color = espacial.EspacialUno.verificar(color);
+                    color = HerramientasColor.obtenerRGBPorCanal(color, HerramientasColor.CanalColor.ROJO);
+
+                    int rgb = HerramientasColor.acumularColor(aux.getRGB(x, y), color);
+                    aux.setRGB(x, y, rgb);
+                }
+            }
+       
+        return aux;
+
     }
 
     private int obtenerColorRealDeFrecuencia(int ejeX, int ejeY, NumeroComplejo[][] transformada, CanalColor canal) {
